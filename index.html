@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jhon Castro | Applied economics and quantitative finance</title>
+<meta name="description" content="Jhon Castro, M.S. candidate in Applied Economics at the University of San Francisco, looking for a Summer 2027 quantitative finance internship.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<style>
+  /* ---------- tokens ---------- */
+  :root {
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    color-scheme: light;
+    --bg: #f7f8fa;
+    --ink: #18212b;
+    --muted: #566170;
+    --rule: #d3d9e0;
+    --rule-soft: #e4e8ed;
+    --study: #38598b;
+    --work: #217a62;
+    --window: #c98f00;
+    --window-fill: rgba(214, 154, 0, 0.16);
+    --today: #c23b2e;
+    --link: #1d4f9c;
+    --focus: #1d4f9c;
+    --serif: "STIX Two Text", "Times New Roman", Georgia, serif;
+    --sans: "Public Sans", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg: #10161d;
+      --ink: #e7ebf0;
+      --muted: #9aa6b4;
+      --rule: #2c3643;
+      --rule-soft: #222b36;
+      --study: #7ea2d8;
+      --work: #4fbf9f;
+      --window: #e8b030;
+      --window-fill: rgba(232, 176, 48, 0.16);
+      --today: #ff8070;
+      --link: #8fb4ee;
+      --focus: #8fb4ee;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #10161d;
+    --ink: #e7ebf0;
+    --muted: #9aa6b4;
+    --rule: #2c3643;
+    --rule-soft: #222b36;
+    --study: #7ea2d8;
+    --work: #4fbf9f;
+    --window: #e8b030;
+    --window-fill: rgba(232, 176, 48, 0.16);
+    --today: #ff8070;
+    --link: #8fb4ee;
+    --focus: #8fb4ee;
+  }
+
+  /* ---------- base ---------- */
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 1.125rem;
+    line-height: 1.62;
+    font-kerning: normal;
+    text-rendering: optimizeLegibility;
+  }
+  .page { width: min(100% - 2.5rem, 62rem); margin-inline: auto; padding-block: clamp(2rem, 6vw, 4.5rem) 4rem; }
+  a { color: var(--link); text-underline-offset: 0.18em; text-decoration-thickness: 1px; }
+  a:hover { text-decoration-thickness: 2px; }
+  a:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
+  p { margin: 0; }
+  [hidden] { display: none !important; }
+
+  /* ---------- hero ---------- */
+  .hero h1 {
+    font-size: clamp(2.6rem, 7.2vw, 4.4rem);
+    line-height: 1.02;
+    letter-spacing: -0.015em;
+    font-weight: 600;
+    margin: 0 0 0.6rem;
+  }
+  .hero .role { font-size: clamp(1.15rem, 2.4vw, 1.45rem); line-height: 1.3; }
+  .hero .ask { font-family: var(--sans); font-size: 0.95rem; color: var(--muted); margin-top: 0.5rem; }
+  .hero .abstract { max-width: 41rem; margin-top: 1.6rem; }
+  .hero .contact {
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    margin-top: 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.75rem;
+  }
+  .hero .toc ul {
+    list-style: none;
+    margin: 1rem 0 0;
+    padding: 0.9rem 0 0;
+    max-width: 41rem;
+    border-top: 1px solid var(--rule-soft);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.75rem;
+    font-family: var(--sans);
+    font-size: 0.95rem;
+  }
+  .hero .toc a { color: var(--ink); text-decoration-color: var(--rule); }
+  .hero .toc a:hover { text-decoration-color: currentColor; }
+
+  /* ---------- figure 1: timeline ---------- */
+  .fig { margin: 3rem 0 0; }
+  .tl {
+    --lw: 0px;
+    --flag-h: 1.5rem;
+    --axis-h: 1.6rem;
+    --foot-h: 2.2rem;
+    font-family: var(--sans);
+    font-size: 0.8125rem;
+    color: var(--muted);
+  }
+  @media (min-width: 48rem) { .tl { --lw: 16.5rem; } }
+  .tl-row { display: grid; grid-template-columns: 1fr; }
+  @media (min-width: 48rem) { .tl-row { grid-template-columns: var(--lw) minmax(0, 1fr); } }
+  .tl-flagrow { height: var(--flag-h); }
+  .tl-axisrow { height: var(--axis-h); }
+  .tl-footrow { height: var(--foot-h); }
+  .tl-flagrow .tl-lbl, .tl-axisrow .tl-lbl, .tl-footrow .tl-lbl { display: none; }
+  @media (min-width: 48rem) {
+    .tl-flagrow .tl-lbl, .tl-axisrow .tl-lbl, .tl-footrow .tl-lbl { display: block; }
+  }
+
+  /* Each track draws its own year lines, window, bars, and today line, so nothing crosses the labels. */
+  .tl-trk { position: relative; isolation: isolate; }
+  .tl-data .tl-trk, .tl-axisrow .tl-trk {
+    background-image: linear-gradient(to right, var(--rule-soft) 1px, transparent 1px);
+    background-size: calc(100% / 11) 100%;
+  }
+  .tl-data { border-top: 1px solid var(--rule-soft); }
+  .tl-data .tl-lbl { padding: 0.6rem 0 0.15rem; }
+  .tl-data .tl-trk { height: 34px; }
+  @media (min-width: 48rem) {
+    .tl-data .tl-lbl { padding: 0.7rem 1rem 0.7rem 0; }
+    .tl-data .tl-trk { height: auto; min-height: 34px; }
+  }
+  .tl-lbl { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0 0.75rem; line-height: 1.3; }
+  @media (min-width: 48rem) { .tl-lbl { display: block; } .tl-w { display: block; } }
+  .tl-t { color: var(--ink); font-weight: 500; font-size: 0.875rem; }
+  .tl-w { color: var(--muted); }
+
+  .tl-today-flag {
+    position: absolute; bottom: 0; transform: translateX(-50%);
+    color: var(--today); font-weight: 600; white-space: nowrap;
+  }
+  .tl-axis span { position: absolute; top: 0.25rem; transform: translateX(-50%); }
+  @media (max-width: 47.99rem) { .tl-axis .odd { display: none; } }
+
+  .tl-band {
+    position: absolute; top: 0; bottom: 0; z-index: 0;
+    background: var(--window-fill);
+    border-left: 1px solid var(--window); border-right: 1px solid var(--window);
+  }
+  .tl-today { position: absolute; top: 0; bottom: 0; width: 0; z-index: 2; border-left: 2px solid var(--today); }
+  .tl-band-label {
+    position: absolute; top: 0.45rem;
+    white-space: nowrap; color: var(--ink); font-size: 0.8125rem; text-align: right;
+  }
+
+  .seg {
+    position: absolute; top: 50%; margin-top: -7px; height: 14px; z-index: 1; border-radius: 2px;
+    transform-origin: left center;
+    animation: grow 0.8s cubic-bezier(0.22, 0.8, 0.3, 1) both;
+    animation-delay: calc(var(--i) * 80ms + 200ms);
+  }
+  .study .seg { --c: var(--study); }
+  .work .seg { --c: var(--work); }
+  .seg.done { background: var(--c); }
+  .seg.future {
+    background-image: repeating-linear-gradient(135deg, var(--c) 0 2px, transparent 2px 6px);
+    box-shadow: inset 0 0 0 1px var(--c);
+    animation-delay: calc(var(--i) * 80ms + 600ms);
+  }
+  .seg.open { clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 50%, calc(100% - 4px) 100%, 0 100%); }
+  /* Earlier phases of a row are lighter shades of its color; the last phase is solid. */
+  .seg.done.ph, .k.ph {
+    background: var(--c);
+    background: color-mix(in srgb, var(--c) var(--mix), transparent);
+    box-shadow: inset 0 0 0 1px var(--c);
+  }
+  .k.ph { --c: var(--work); }
+  @keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @media (prefers-reduced-motion: reduce) { .seg { animation: none; } }
+
+  .tl-key {
+    display: flex; flex-wrap: wrap; gap: 0.35rem 1.25rem;
+    list-style: none; padding: 0; margin: 0.4rem 0 0.6rem;
+    font-family: var(--sans); font-size: 0.8125rem; color: var(--muted);
+  }
+  .k { display: inline-block; width: 0.95rem; height: 0.6rem; margin-right: 0.4rem; border-radius: 1px; }
+  .k.study { background: var(--study); }
+  .k.work { background: var(--work); }
+  .k.future {
+    background-image: repeating-linear-gradient(135deg, var(--muted) 0 2px, transparent 2px 5px);
+    box-shadow: inset 0 0 0 1px var(--muted);
+  }
+  figcaption { font-family: var(--sans); font-size: 0.875rem; color: var(--muted); max-width: 44rem; line-height: 1.5; }
+  figcaption strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------- sections ---------- */
+  .sec { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.6rem 2.5rem; margin-top: 4rem; }
+  @media (min-width: 56rem) { .sec { grid-template-columns: 11rem minmax(0, 41rem); } }
+  .sec > h2 { font-family: var(--sans); font-size: 0.95rem; font-weight: 600; margin: 0.3rem 0 0; line-height: 1.4; }
+  .entry + .entry { margin-top: 1.7rem; }
+  .entry h3 { font-size: 1.125rem; font-weight: 600; line-height: 1.35; margin: 0; }
+  .entry .meta { font-family: var(--sans); font-size: 0.875rem; color: var(--muted); margin: 0.15rem 0 0.4rem; }
+  .note { font-family: var(--sans); font-size: 0.875rem; color: var(--muted); margin-top: 1.4rem; }
+  .plain { list-style: none; margin: 0; padding: 0; }
+  .plain li + li { margin-top: 0.55rem; }
+  .plain b { font-weight: 600; }
+
+  /* ---------- table 1 ---------- */
+  table { border-collapse: collapse; width: 100%; font-size: 1rem; line-height: 1.45; }
+  caption { text-align: left; font-family: var(--sans); font-size: 0.875rem; color: var(--muted); padding-bottom: 0.6rem; }
+  thead th {
+    text-align: left; font-family: var(--sans); font-size: 0.875rem; font-weight: 600;
+    padding: 0.5rem 1rem 0.5rem 0; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--ink);
+  }
+  tbody th, tbody td { padding: 0.6rem 1rem 0.6rem 0; vertical-align: top; text-align: left; }
+  tbody th { font-weight: 600; width: 34%; }
+  tbody td { font-weight: 400; }
+  tbody tr:last-child > * { border-bottom: 2px solid var(--ink); }
+  @media (max-width: 40rem) { tbody th { width: 38%; } }
+
+  /* ---------- figure 2 and table 2: win rate with 95% intervals ---------- */
+  .fig2 { margin: 2rem 0 0; }
+  .fig2 figcaption { margin-top: 0.75rem; }
+  .f2 { --c: var(--work); font-family: var(--sans); font-size: 0.8125rem; color: var(--muted); }
+  .f2-row {
+    display: grid;
+    column-gap: 0.75rem;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "name val" "trk trk";
+  }
+  @media (min-width: 48rem) {
+    .f2-row { grid-template-columns: 8.5rem minmax(0, 1fr) 10.5rem; grid-template-areas: "name trk val"; align-items: center; }
+  }
+  .f2-name { grid-area: name; color: var(--ink); font-weight: 500; font-size: 0.875rem; line-height: 1.3; }
+  .f2-val { grid-area: val; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .f2-trk { grid-area: trk; position: relative; }
+  .f2-data { border-top: 1px solid var(--rule-soft); }
+  .f2-data .f2-name, .f2-data .f2-val { padding-top: 0.55rem; }
+  .f2-data .f2-trk { height: 28px; }
+  @media (min-width: 48rem) {
+    .f2-data .f2-name, .f2-data .f2-val { padding: 0.45rem 0; }
+    .f2-data .f2-trk { height: auto; min-height: 28px; align-self: stretch; }
+  }
+  .f2-data.f2-group { border-top-color: var(--rule); }
+  .f2-row.diff { --c: var(--ink); }
+  .f2-flagrow .f2-trk { height: 1.4rem; }
+  .f2-flag { position: absolute; bottom: 0.1rem; transform: translateX(-50%); white-space: nowrap; color: var(--ink); }
+  .f2-axisrow { border-top: 1px solid var(--rule); }
+  .f2-axisrow .f2-trk { height: 1.5rem; }
+  .f2-axis span { position: absolute; top: 0.25rem; transform: translateX(-50%); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  @media (max-width: 47.99rem) {
+    /* On a phone the axis spans the full width, so labels at its ends align to the edge instead of centering. */
+    .f2 .edge-l { transform: none; }
+    .f2 .edge-r { transform: translateX(-100%); }
+  }
+  .f2-title { text-align: center; }
+  .f2-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: visible; }
+  .f2-grid { stroke: var(--rule-soft); stroke-width: 1px; }
+  .f2-zero { stroke: var(--muted); stroke-width: 1.5px; }
+  .f2-ci { stroke: var(--c); stroke-width: 3px; }
+  .f2-boot { stroke: var(--c); stroke-width: 1px; }
+  .f2-dot { fill: var(--c); stroke: var(--bg); stroke-width: 1.5px; }
+
+  /* Table 2 can be wider than a phone, so it scrolls inside its box; its caption sits outside so it always fits. */
+  .tcap { font-family: var(--sans); font-size: 0.875rem; color: var(--muted); margin-top: 2rem; padding-bottom: 0.6rem; }
+  .tbl-wrap { overflow-x: auto; }
+  .tbl-wrap:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+  .t2 { font-family: var(--sans); font-size: 0.875rem; font-variant-numeric: tabular-nums; }
+  .t2 th, .t2 tbody td { padding: 0.5rem 0 0.5rem 0.75rem; }
+  .t2 th:first-child { padding-left: 0; }
+  .t2 tbody th { width: auto; font-weight: 500; }
+  .t2 td, .t2 thead th:not(:first-child) { text-align: right; }
+  .t2 td { white-space: nowrap; }
+  .t2 tr.t2-grp > * { border-top: 1px solid var(--rule); }
+
+  /* ---------- latest ---------- */
+  .updates { list-style: none; margin: 0; padding: 0; }
+  .more { margin-top: 1.7rem; }
+  .more .updates { margin-top: 1.2rem; }
+  details > summary {
+    font-family: var(--sans); font-size: 0.875rem; color: var(--link);
+    cursor: pointer; margin-top: 0.5rem; width: fit-content;
+  }
+  details > summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
+  .update-body p { margin-top: 0.8rem; }
+
+  .contact-line { max-width: 41rem; }
+  footer { margin-top: 4.5rem; font-family: var(--sans); font-size: 0.8125rem; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="hero">
+    <h1>Jhon Castro</h1>
+    <p class="role">M.S. candidate in Applied Economics, University of San Francisco</p>
+    <p class="ask">Looking for a Summer 2027 internship in quantitative finance.</p>
+    <p class="abstract">
+      I&rsquo;m a first-year M.S. student in Applied Economics at the University of San Francisco, originally from
+      La Paz, Bolivia. From 2022 to 2024 I played poker professionally online, winning 4 big blinds per 100 hands over
+      more than 500,000 hands. I also worked in credit at my family&rsquo;s business and interned in FP&amp;A at
+      Kimberly-Clark. I now research LLM chatbots that explain financial concepts, with a focus on microfinance
+      entrepreneurs, and I work in R and Python. My thinking about risk is heavily influenced by Nassim Nicholas
+      Taleb. Outside of work I print and paint 3D figures.
+    </p>
+    <p class="contact">
+      <a data-site="email" href="mailto:jhonpoolcastro.jcs@gmail.com">jhonpoolcastro.jcs@gmail.com</a>
+      <a data-site="linkedin" href="https://www.linkedin.com/in/jhon-pool-castro" rel="noopener">LinkedIn</a>
+      <a data-site="github" href="#" rel="noopener" hidden>GitHub</a>
+    </p>
+    <nav class="toc" aria-label="On this page">
+      <ul>
+        <li id="toc-latest" hidden><a href="#latest">Latest</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#education">Education</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <figure class="fig" aria-labelledby="fig1-cap">
+    <div class="tl" id="tl" role="img"
+         aria-label="Timeline of study and work from 2018 to 2028. Bachelor's degree at UCB, 2018 to 2023. FP&amp;A internship at Kimberly-Clark, November 2021 to February 2022. Professional poker player, self-employed, 2022 to 2024. Credit officer at Motoky, 2022 to 2024. Business leadership internship at Piggly Wiggly, November 2025 to March 2026. M.S. in Applied Economics at USF, August 2026 to May 2028, expected. Research assistant at USF, September 2026 to present. The Summer 2027 internship window is highlighted."></div>
+    <ul class="tl-key" id="tl-key" aria-hidden="true">
+      <li><i class="k study"></i>Study</li>
+      <li><i class="k work"></i>Work or research</li>
+      <li><i class="k future"></i>Still to come</li>
+    </ul>
+    <figcaption id="fig1-cap"><strong>Figure 1.</strong> Study and work, 2018 to 2028. Hatched bars have not happened yet. The shaded band is the Summer 2027 internship window.</figcaption>
+  </figure>
+
+  <main>
+
+    <section class="sec" id="latest" hidden>
+      <h2>Latest</h2>
+      <div>
+        <ul class="updates" id="updates"></ul>
+        <details class="more" id="updates-more" hidden>
+          <summary id="updates-more-label">More updates</summary>
+          <ul class="updates" id="updates-older"></ul>
+        </details>
+      </div>
+    </section>
+
+    <section class="sec" id="research">
+      <h2>Research and projects</h2>
+      <div>
+        <article class="entry">
+          <h3>LLM chatbots for financial literacy</h3>
+          <p class="meta">University of San Francisco, since September 2026, in progress</p>
+          <p>
+            The research question is how a large language model could affect the lives of microfinance entrepreneurs.
+            I develop and test chatbots that explain financial concepts such as compound interest, credit, and risk
+            to people from different socio-economic backgrounds, and I prototype with agentic coding tools, including
+            Claude. The project is at an early stage and I have no results to report yet. I am preparing broader testing.
+          </p>
+        </article>
+        <article class="entry">
+          <h3>Productivity in the textile industry and machine learning</h3>
+          <p class="meta">AI Saturdays La Paz (Saturdays.AI), 2021</p>
+          <p>
+            Presented at the program&rsquo;s Demo Day on how machine learning can support better productivity
+            decisions in the textile industry.
+          </p>
+        </article>
+        <div id="projects"></div>
+        <p class="note" id="gh-soon">Python and R notebooks are moving to GitHub. The link will appear here.</p>
+        <p class="note" id="gh-live" hidden>More code and notebooks are on <a data-site="github" href="#" rel="noopener">GitHub</a>.</p>
+      </div>
+    </section>
+
+    <section class="sec" id="experience">
+      <h2>Experience</h2>
+      <div>
+        <article class="entry">
+          <h3>Research Assistant</h3>
+          <p class="meta">University of San Francisco, part-time, September 2026 to present</p>
+          <p>Develop and test LLM-based chatbots that explain financial concepts. Prototype with agentic coding workflows using Claude.</p>
+        </article>
+        <article class="entry">
+          <h3>Professional poker player</h3>
+          <p class="meta">Self-employed, online, 2022 to 2024</p>
+          <p>
+            Won at 4 big blinds per 100 hands (bb/100) over more than 500,000 hands of online poker, playing
+            professionally, and specialized in out-of-position play in multiway pots. Followed strict bankroll rules to
+            keep risk of ruin near zero. Analyzed hand samples to evaluate results and refine strategy. Moved from game-theory-optimal (GTO) play toward exploitative strategy,
+            adapting to opponents&rsquo; tendencies.
+          </p>
+        </article>
+        <article class="entry">
+          <h3>Credit Officer</h3>
+          <p class="meta">Motoky (family business), La Paz, Bolivia, 2022 to 2024</p>
+          <p>
+            Managed microfinance credit for clients financing work vehicles and handled the related vehicle sales.
+            Evaluated about 10 clients a week and closed 2 to 5 financed sales a month, depending on the season.
+          </p>
+        </article>
+        <article class="entry">
+          <h3>Business Leadership Intern</h3>
+          <p class="meta">Piggly Wiggly, Wisconsin, November 2025 to March 2026</p>
+          <p>Led the bakery team, overseeing daily operations and inventory rotation.</p>
+        </article>
+        <article class="entry">
+          <h3>Finance FP&amp;A Intern</h3>
+          <p class="meta">Kimberly-Clark, Bolivia, November 2021 to February 2022</p>
+          <p>Supported planning and budgeting for Peru, Bolivia, and Argentina in Excel and updated the database and control centers.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="sec" id="risk">
+      <h2>How I think about risk</h2>
+      <div>
+        <p>
+          I&rsquo;m heavily influenced by Nassim Nicholas Taleb, and the idea that changed my play most was ruin. Ruin is
+          permanent, so no edge justifies risking it. I set strict bankroll rules that pushed my risk of ruin toward
+          zero and kept my risk extremely low.
+        </p>
+        <p style="margin-top: 1rem;">
+          His work on randomness and fat tails also shapes how I read results: I ask how much of an outcome could be luck,
+          which assumptions fail in the tails, and what being wrong would cost. Poker gave me a large sample to study,
+          more than 500,000 hands, and I moved from game-theory-optimal play toward exploitative play. I want to keep
+          asking the same questions in finance.
+        </p>
+        <figure class="fig2" id="fig2" aria-labelledby="fig2-cap" hidden>
+          <div class="f2" id="f2" role="img"></div>
+          <figcaption id="fig2-cap"><strong>Figure 2.</strong> <span id="fig2-text"></span></figcaption>
+        </figure>
+        <div id="t2-box" hidden>
+          <p class="tcap" id="t2-cap"></p>
+          <div class="tbl-wrap" role="region" aria-labelledby="t2-cap" tabindex="0">
+            <table class="t2" id="t2" aria-labelledby="t2-cap"></table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="tools">
+      <h2>Tools and methods</h2>
+      <div>
+        <table>
+          <caption><strong>Table 1.</strong> Tools and methods I use.</caption>
+          <thead>
+            <tr><th scope="col">Tool or method</th><th scope="col">What I use it for</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">R</th><td>Data visualization, regression, and time-series analysis with standard packages.</td></tr>
+            <tr><th scope="row">Python</th><td>Machine learning basics: decision trees and random forests, plus small projects.</td></tr>
+            <tr><th scope="row">Git</th><td>Basic version control: pushing to and pulling from the main branch.</td></tr>
+            <tr><th scope="row">Excel</th><td>Planning and budgeting at Kimberly-Clark.</td></tr>
+            <tr><th scope="row">Game theory, probability, and risk</th><td>Game-theory-optimal (GTO) and exploitative strategy, plus bankroll and risk-of-ruin management, from poker; HarvardX probability.</td></tr>
+            <tr><th scope="row">LLM tooling</th><td>Prototyping chatbots with agentic coding workflows using Claude.</td></tr>
+          </tbody>
+        </table>
+        <p class="note">Languages: Spanish (native) and English (C1, Pearson Test of English General).</p>
+      </div>
+    </section>
+
+    <section class="sec" id="education">
+      <h2>Education</h2>
+      <div>
+        <article class="entry">
+          <h3>University of San Francisco</h3>
+          <p class="meta">Master of Science in Applied Economics, August 2026 to May 2028 (expected)</p>
+          <p>A program with training in econometrics, causal inference, and data science.</p>
+        </article>
+        <article class="entry">
+          <h3>Universidad Cat&oacute;lica Boliviana &ldquo;San Pablo&rdquo;</h3>
+          <p class="meta">La Paz, Bolivia, 2018 to 2023</p>
+          <p>
+            Bachelor&rsquo;s degree (Licenciatura) in Business Creation and Development, School of Production and
+            Competitiveness. Bilingual program with about half of the courses taught in English.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="sec" id="training">
+      <h2>Training and honors</h2>
+      <ul class="plain">
+        <li><b>HarvardX:</b> Data Science: Probability; Data Science: Visualization.</li>
+        <li><b>AI Saturdays La Paz (Saturdays.AI):</b> Machine Learning track, September 2021.</li>
+        <li><b>J.P. Morgan (Forage):</b> Investment Banking virtual experience.</li>
+        <li><b>LinuxFoundationX:</b> Blockchain: Understanding Its Uses and Implications.</li>
+        <li><b>Falling Walls Lab Bolivia, 2020:</b> finalist, pitched a 3D-printing business concept.</li>
+      </ul>
+    </section>
+
+    <section class="sec" id="contact">
+      <h2>Contact</h2>
+      <p class="contact-line">
+        I&rsquo;m applying for Summer 2027 quantitative finance internships. Email is the fastest way to reach me:
+        <a data-site="email" href="mailto:jhonpoolcastro.jcs@gmail.com">jhonpoolcastro.jcs@gmail.com</a>. You can also find me on
+        <a data-site="linkedin" href="https://www.linkedin.com/in/jhon-pool-castro" rel="noopener">LinkedIn</a>.
+      </p>
+    </section>
+
+  </main>
+
+  <footer>Last updated November 2026.</footer>
+</div>
+
+<script>
+  // ---------- Settings: change a link here and it changes everywhere on the page ----------
+  var SITE = {
+    email: "jhonpoolcastro.jcs@gmail.com",
+    linkedin: "https://www.linkedin.com/in/jhon-pool-castro",
+    github: "https://github.com/flushRoyale",  // null hides every GitHub link
+    url: null,          // this page's own address once it is final; then also add a canonical link and JSON-LD to the head
+    variant: "trading"  // this page also serves as the Trading version, so updates pinned to "trading" show first
+  };
+
+  // ---------- Latest: the update log ----------
+  // One object per entry; the page sorts them newest first and shows five, the rest under "More updates".
+  // { date: "YYYY-MM-DD", lane: "Research" | "Project" | "Poker study" | "Note" | "Life",
+  //   title: "...", summary: "up to 60 words", link: "https://..." or "#anchor" or null,
+  //   body: "optional, up to 700 words; a blank line starts a new paragraph" or null,
+  //   pinned: [] or ["trading"] or ["finance"] }
+  var UPDATES = [];
+
+  // ---------- Projects: shown under "Research and projects" ----------
+  // One object per project, in the order you want them shown. Empty list shows nothing.
+  // { title: "...", meta: "Course or context, year", summary: "one or two sentences",
+  //   link: "https://github.com/flushRoyale/repo-name" or null }
+  var PROJECTS = [];
+
+  // ---------- Poker results: Figure 2 and Table 2 ----------
+  // null hides both. Otherwise numbers come straight from the tracker, in bb/100:
+  // { basis: "actual" or "all-in adjusted",
+  //   phases: [{ name, hands, wr, sd }, ...],   // in time order, or []
+  //   all: { hands, wr, sd } }                  // every hand in the sample, or null
+  // wr is the win rate and sd the standard deviation. Optional: boot: [low, high], a block-bootstrap 95% interval,
+  // on any phase or on all; stepBoot: [low, high] on a phase, for its change from the phase before.
+  // The page computes every other number from these.
+  var PHASES = null;
+
+  // Helpers shared by the scripts below.
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text) e.textContent = text;
+    return e;
+  }
+  function lowerFirst(s) { return s.charAt(0).toLowerCase() + s.slice(1); }
+</script>
+<script>
+  // Each script runs on its own, so an error in one leaves the rest of the page working.
+  (function () {
+    // ---------- Links from SITE ----------
+    var links = document.querySelectorAll("[data-site]");
+    for (var i = 0; i < links.length; i++) {
+      var a = links[i], key = a.getAttribute("data-site"), v = SITE[key];
+      a.hidden = !v;
+      if (!v) continue;
+      if (key === "email") {
+        a.href = "mailto:" + v;
+        if (a.textContent.indexOf("@") >= 0) a.textContent = v;
+      } else {
+        a.href = v;
+      }
+    }
+    document.getElementById("gh-live").hidden = !SITE.github;
+    document.getElementById("gh-soon").hidden = !!SITE.github;
+  })();
+</script>
+<script>
+  (function () {
+    // ---------- Projects ----------
+    var box = document.getElementById("projects");
+    PROJECTS.forEach(function (p) {
+      var art = el("article", "entry");
+      var h = el("h3");
+      if (p.link) {
+        var a = el("a", null, p.title);
+        a.href = p.link;
+        a.rel = "noopener";
+        h.appendChild(a);
+      } else {
+        h.textContent = p.title;
+      }
+      art.appendChild(h);
+      if (p.meta) art.appendChild(el("p", "meta", p.meta));
+      if (p.summary) art.appendChild(el("p", null, p.summary));
+      box.appendChild(art);
+    });
+  })();
+</script>
+<script>
+  (function () {
+    // ---------- Latest ----------
+    if (!UPDATES.length) return;
+    var SHOW = 5;
+    var MONTHS = ["January", "February", "March", "April", "May", "June", "July",
+                  "August", "September", "October", "November", "December"];
+    var LANES = ["Research", "Project", "Poker study", "Note", "Life"];
+    var words = function (s) { return s ? s.trim().split(/\s+/).length : 0; };
+    var pinned = function (u) { return (u.pinned || []).indexOf(SITE.variant) >= 0; };
+
+    var items = UPDATES.slice().sort(function (a, b) {
+      if (pinned(a) !== pinned(b)) return pinned(a) ? -1 : 1;
+      return a.date < b.date ? 1 : a.date > b.date ? -1 : 0;
+    });
+    items.forEach(function (u, i) {
+      if (LANES.indexOf(u.lane) < 0) console.warn("Latest: unknown lane \"" + u.lane + "\" in " + u.title);
+      if (words(u.summary) > 60) console.warn("Latest: summary over 60 words in " + u.title);
+      if (words(u.body) > 700) console.warn("Latest: body over 700 words in " + u.title);
+
+      var d = u.date.split("-");
+      var li = el("li", "entry");
+      var h = el("h3", "", u.link ? "" : u.title);
+      if (u.link) {
+        var a = el("a", "", u.title);
+        a.href = u.link;
+        if (u.link.charAt(0) !== "#") a.rel = "noopener";
+        h.appendChild(a);
+      }
+      li.appendChild(h);
+      li.appendChild(el("p", "meta", u.lane + ", " + MONTHS[d[1] - 1] + " " + Number(d[2]) + ", " + d[0]));
+      li.appendChild(el("p", "", u.summary));
+      if (u.body) {
+        var more = el("details");
+        more.appendChild(el("summary", "", "Read the full update"));
+        var body = el("div", "update-body");
+        u.body.split(/\n\s*\n/).forEach(function (t) { body.appendChild(el("p", "", t.trim())); });
+        more.appendChild(body);
+        li.appendChild(more);
+      }
+      document.getElementById(i < SHOW ? "updates" : "updates-older").appendChild(li);
+    });
+    if (items.length > SHOW) {
+      document.getElementById("updates-more").hidden = false;
+      document.getElementById("updates-more-label").textContent = "More updates (" + (items.length - SHOW) + ")";
+    }
+    document.getElementById("latest").hidden = false;
+    document.getElementById("toc-latest").hidden = false;
+  })();
+</script>
+<script>
+  (function () {
+    // ---------- Figure 1: timeline ----------
+    var root = document.getElementById("tl");
+    if (!root) return;
+
+    var D = function (y, m, d) { return Date.UTC(y, m - 1, d || 1); };
+    var START = D(2018, 1, 1), END = D(2029, 1, 1), SPAN = END - START;
+    var NOW = Date.now();
+    var pct = function (t) { return Math.max(0, Math.min(100, ((t - START) / SPAN) * 100)); };
+    var nowPct = Math.min(97, Math.max(3, pct(NOW)));
+
+    // End dates are the first day of the month after the last month worked or studied.
+    // A row can be split into phases, oldest first: phases: [{ name, when, to }, ..., { name, when }].
+    // Every phase but the last needs its end date (to). Earlier phases are drawn as lighter shades.
+    var rows = [
+      { kind: "study", title: "Bachelor\u2019s degree, UCB", when: "Feb 2018 to Jan 2023", from: D(2018, 2), to: D(2023, 2) },
+      { kind: "work", title: "FP&A intern, Kimberly-Clark", when: "Nov 2021 to Feb 2022", from: D(2021, 11), to: D(2022, 3) },
+      { kind: "work", title: "Professional poker, self-employed", when: "2022 to 2024", from: D(2022, 1), to: D(2025, 1) },
+      { kind: "work", title: "Credit officer, Motoky", when: "2022 to 2024", from: D(2022, 1), to: D(2025, 1) },
+      { kind: "work", title: "Business leadership intern, Piggly Wiggly", when: "Nov 2025 to Mar 2026", from: D(2025, 11), to: D(2026, 4) },
+      { kind: "study", title: "M.S. Applied Economics, USF", when: "Aug 2026 to May 2028 (expected)", from: D(2026, 8), to: D(2028, 6) },
+      { kind: "work", title: "Research assistant, USF", when: "Sep 2026 to present", from: D(2026, 9), to: null }
+    ];
+    var WIN_FROM = D(2027, 5, 15), WIN_TO = D(2027, 9, 1);
+    var MIX = [25, 55, 75];  // strength of each earlier phase's shade, in percent of the row's color
+    var mix = function (j) { return MIX[Math.min(j, MIX.length - 1)] + "%"; };
+
+    function row(cls) {
+      var r = el("div", "tl-row " + cls);
+      r.appendChild(el("div", "tl-lbl"));
+      return r;
+    }
+    function addBand(trk) {
+      var b = el("i", "tl-band");
+      b.style.left = pct(WIN_FROM) + "%";
+      b.style.width = pct(WIN_TO) - pct(WIN_FROM) + "%";
+      trk.appendChild(b);
+    }
+    function addToday(trk) {
+      var t = el("i", "tl-today");
+      t.style.left = nowPct + "%";
+      trk.appendChild(t);
+    }
+    function addSeg(trk, cls, a, b, i) {
+      var s = el("span", "seg " + cls);
+      s.style.left = pct(a) + "%";
+      s.style.width = Math.max(0.9, pct(b) - pct(a)) + "%";
+      s.style.setProperty("--i", i);
+      trk.appendChild(s);
+      return s;
+    }
+
+    // "Today" flag
+    var flagRow = row("tl-flagrow");
+    var flagTrk = el("div", "tl-trk");
+    var flag = el("span", "tl-today-flag", "Today");
+    flag.style.left = nowPct + "%";
+    flagTrk.appendChild(flag);
+    flagRow.appendChild(flagTrk);
+    root.appendChild(flagRow);
+
+    // Year axis, with each label centered in its year
+    var axisRow = row("tl-axisrow");
+    var axTrk = el("div", "tl-trk tl-axis");
+    for (var y = 2018; y <= 2028; y++) {
+      var lab = el("span", y % 2 ? "odd" : "", String(y));
+      lab.style.left = pct(D(y, 7, 2)) + "%";
+      axTrk.appendChild(lab);
+    }
+    addToday(axTrk);
+    axisRow.appendChild(axTrk);
+    root.appendChild(axisRow);
+
+    // Data rows
+    rows.forEach(function (r, i) {
+      var phases = r.phases && r.phases.length ? r.phases : null;
+      var phaseText = phases ? phases.map(function (p) { return lowerFirst(p.name) + ", " + p.when; }).join("; ") : "";
+      var rw = el("div", "tl-row tl-data " + r.kind);
+      rw.title = r.title + ": " + r.when + (phases ? " (" + phaseText + ")" : "");
+      var lbl = el("div", "tl-lbl");
+      lbl.appendChild(el("span", "tl-t", r.title));
+      lbl.appendChild(el("span", "tl-w", r.when));
+      var trk = el("div", "tl-trk");
+      addBand(trk);
+      var to = r.to === null ? NOW : r.to;
+      var parts = phases || [null], from = r.from;
+      parts.forEach(function (p, j) {
+        var last = j === parts.length - 1;
+        var end = last ? to : p.to;
+        var doneTo = Math.min(end, NOW);
+        if (doneTo > from) {
+          var s = addSeg(trk, "done" + (last ? (r.to === null ? " open" : "") : " ph"), from, doneTo, i);
+          if (!last) s.style.setProperty("--mix", mix(j));
+        }
+        from = end;
+      });
+      if (to > NOW) addSeg(trk, "future", Math.max(r.from, NOW), to, i);
+      addToday(trk);
+      rw.appendChild(lbl);
+      rw.appendChild(trk);
+      root.appendChild(rw);
+
+      // Phases also go in the key and in the figure's text equivalent.
+      if (phases) {
+        var key = document.getElementById("tl-key");
+        phases.forEach(function (p, j) {
+          var last = j === phases.length - 1;
+          var li = el("li");
+          var k = el("i", "k " + (last ? r.kind : "ph"));
+          if (!last) k.style.setProperty("--mix", mix(j));
+          li.appendChild(k);
+          li.appendChild(document.createTextNode(p.name + " phase"));
+          key.appendChild(li);
+        });
+        root.setAttribute("aria-label", root.getAttribute("aria-label") + " " + r.title + " is split into phases: " + phaseText + ".");
+      }
+    });
+
+    // Window label under the figure
+    var footRow = row("tl-footrow");
+    var footTrk = el("div", "tl-trk");
+    var bandLabel = el("span", "tl-band-label", "Summer 2027 internship window");
+    bandLabel.style.right = 100 - pct(WIN_TO) + "%";
+    footTrk.appendChild(bandLabel);
+    footRow.appendChild(footTrk);
+    root.appendChild(footRow);
+  })();
+</script>
+<script>
+  (function () {
+    // ---------- Figure 2 and Table 2: win rate with 95% intervals ----------
+    if (!PHASES) return;
+    var Z = 1.96, NS = "http://www.w3.org/2000/svg";
+    var phases = PHASES.phases || [];
+    var fmt = function (v) {
+      var s = Math.abs(v).toFixed(2);
+      return (v < 0 && s !== "0.00" ? "−" : "") + s;
+    };
+    var span = function (lo, hi) { return fmt(lo) + " to " + fmt(hi); };
+    var num = function (v) { return Number(v).toLocaleString("en-US", { maximumFractionDigits: 2 }); };
+
+    // Interval for a phase: wr plus or minus 1.96 * sd / sqrt(hands / 100).
+    function estimate(name, p) {
+      var half = Z * p.sd / Math.sqrt(p.hands / 100);
+      return { name: name, hands: p.hands, wr: p.wr, sd: p.sd, lo: p.wr - half, hi: p.wr + half, boot: p.boot || null };
+    }
+    var ph = phases.map(function (p) { return estimate(p.name, p); });
+    var all = PHASES.all ? estimate("All hands", PHASES.all) : null;
+    if (!ph.length && !all) return;
+
+    // Change between consecutive phases: the two standard errors combine as sqrt(se1^2 + se2^2).
+    var steps = [];
+    for (var i = 1; i < ph.length; i++) {
+      var a = ph[i - 1], b = ph[i], dv = b.wr - a.wr;
+      var half = Z * Math.sqrt(a.sd * a.sd / (a.hands / 100) + b.sd * b.sd / (b.hands / 100));
+      steps.push({ name: b.name + " minus " + lowerFirst(a.name), wr: dv, lo: dv - half, hi: dv + half,
+                   boot: phases[i].stepBoot || null, step: true });
+    }
+
+    // The figure shows the phases, all hands, and the last change. The table shows every change.
+    var rows = ph.slice();
+    if (all) { all.group = ph.length > 0; rows.push(all); }
+    var last = steps[steps.length - 1];
+    if (last) { last.group = true; last.diff = true; rows.push(last); }
+    var hasBoot = rows.concat(steps).some(function (r) { return r.boot; });
+
+    // Axis: round outward to a step of 1, 2, 2.5, or 5 times a power of ten, always including zero.
+    var lo = 0, hi = 0;
+    rows.forEach(function (r) {
+      lo = Math.min(lo, r.lo, r.boot ? r.boot[0] : 0);
+      hi = Math.max(hi, r.hi, r.boot ? r.boot[1] : 0);
+    });
+    if (!(hi > lo)) hi = lo + 1;
+    var rough = (hi - lo) / 6, mag = Math.pow(10, Math.floor(Math.log(rough) / Math.LN10)), f = rough / mag;
+    var step = Number(((f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * mag).toPrecision(3));
+    var min = Math.floor(lo / step) * step, max = Math.ceil(hi / step) * step;
+    var x = function (v) { return (v - min) / (max - min) * 100; };
+    var ticks = [];
+    for (var k = 0; k <= Math.round((max - min) / step); k++) ticks.push(Number((min + k * step).toFixed(10)));
+    var dec = (String(step).split(".")[1] || "").length;
+
+    // Labels near an edge can line up with it (see .edge-l and .edge-r), so they never spill off a phone screen.
+    function place(e, p) {
+      e.style.left = p + "%";
+      if (p < 12) e.className += " edge-l";
+      else if (p > 88) e.className += " edge-r";
+    }
+    function svg(tag, attrs, parent) {
+      var e = document.createElementNS(NS, tag);
+      for (var key in attrs) e.setAttribute(key, attrs[key]);
+      parent.appendChild(e);
+      return e;
+    }
+    var root = document.getElementById("f2");
+    function row(cls, name, val) {
+      var r = el("div", "f2-row " + cls), trk = el("div", "f2-trk");
+      r.appendChild(el("div", "f2-name", name));
+      r.appendChild(trk);
+      r.appendChild(el("div", "f2-val", val));
+      root.appendChild(r);
+      return trk;
+    }
+    function vline(s, cls, v) { svg("line", { "class": cls, x1: x(v) + "%", x2: x(v) + "%", y1: 0, y2: "100%" }, s); }
+    function hline(s, cls, a, b) { svg("line", { "class": cls, x1: x(a) + "%", x2: x(b) + "%", y1: "50%", y2: "50%" }, s); }
+    function at(s, v) { return svg("svg", { x: x(v) + "%", y: "50%", overflow: "visible" }, s); }
+
+    var flag = el("span", "f2-flag", "Break-even");
+    place(flag, x(0));
+    row("f2-flagrow", "", "").appendChild(flag);
+
+    rows.forEach(function (r, i) {
+      var trk = row("f2-data" + (r.group && i > 0 ? " f2-group" : "") + (r.diff ? " diff" : ""),
+                    r.name, fmt(r.wr) + " (" + span(r.lo, r.hi) + ")");
+      var s = svg("svg", { "class": "f2-svg", "aria-hidden": "true" }, trk);
+      ticks.forEach(function (t) { if (t !== 0) vline(s, "f2-grid", t); });
+      vline(s, "f2-zero", 0);
+      if (r.boot) {
+        hline(s, "f2-boot", r.boot[0], r.boot[1]);
+        r.boot.forEach(function (v) { svg("line", { "class": "f2-boot", y1: -5, y2: 5 }, at(s, v)); });
+      }
+      hline(s, "f2-ci", r.lo, r.hi);
+      // Circles for estimates, a diamond for the change, so shape and label carry the meaning, not color.
+      if (r.diff) svg("path", { "class": "f2-dot", d: "M0 -6.5L6.5 0L0 6.5L-6.5 0Z" }, at(s, r.wr));
+      else svg("circle", { "class": "f2-dot", r: 5 }, at(s, r.wr));
+    });
+
+    var axis = row("f2-axisrow", "", "");
+    axis.className += " f2-axis";
+    ticks.forEach(function (t) {
+      var lab = el("span", "", (t < 0 ? "−" : "") + Math.abs(t).toFixed(dec));
+      place(lab, x(t));
+      axis.appendChild(lab);
+    });
+    row("f2-titlerow", "", "").appendChild(el("div", "f2-title", "Win rate (bb/100)"));
+
+    root.setAttribute("aria-label", "Win rate in bb/100 with 95% intervals. " + rows.map(function (r) {
+      return r.name + ": " + fmt(r.wr) + ", interval " + span(r.lo, r.hi) + ".";
+    }).join(" "));
+
+    var cap;
+    if (!ph.length) {
+      cap = "Win rate of " + fmt(all.wr) + " bb/100 over " + num(all.hands) + " hands, with a 95% confidence interval of " +
+            span(all.lo, all.hi) + " (standard deviation " + num(all.sd) + " bb/100). The calculation assumes independent " +
+            "hands and a normal approximation. Real results have fatter tails, so treat the interval as a rough guide.";
+    } else {
+      cap = "Win rate by phase, in big blinds per 100 hands (bb/100). Dots are estimates and thick lines are 95% intervals." +
+            (hasBoot ? " Thin lines with end ticks are 95% intervals from a block bootstrap, which resamples the results " +
+                       "in blocks of 100 hands and makes fewer assumptions." : "") +
+            (last ? " The diamond is the change from the " + lowerFirst(ph[ph.length - 2].name) + " phase to the " +
+                    lowerFirst(ph[ph.length - 1].name) + " phase." : "") +
+            " The intervals assume independent hands and a normal approximation. Real results have fatter tails, " +
+            "so treat them as a rough guide.";
+    }
+    if (PHASES.basis === "actual") cap += " These are actual results, not all-in adjusted.";
+    if (PHASES.basis === "all-in adjusted") cap += " These are all-in adjusted results, which replace the luck of " +
+                                                   "all-in hands with their expected value.";
+    document.getElementById("fig2-text").textContent = cap + " Table 2 lists every number.";
+
+    // Table 2: the same numbers, plus every change between phases.
+    var t = document.getElementById("t2"), tcap = document.getElementById("t2-cap");
+    tcap.appendChild(el("strong", "", "Table 2."));
+    tcap.appendChild(document.createTextNode(ph.length
+      ? " Win rate by phase and the change between phases, in bb/100, with 95% intervals."
+      : " Win rate over all hands, in bb/100, with a 95% interval."));
+    var thead = el("thead"), hr = el("tr");
+    ["Item", "Hands", "Win rate", "Standard deviation", "95% interval"]
+      .concat(hasBoot ? ["Bootstrap 95% interval"] : [], ["Interval includes zero?"])
+      .forEach(function (h) { var th = el("th", "", h); th.scope = "col"; hr.appendChild(th); });
+    thead.appendChild(hr);
+    t.appendChild(thead);
+    var tb = el("tbody");
+    ph.concat(all ? [all] : [], steps).forEach(function (r) {
+      var tr = el("tr", (r === all && ph.length) || r === steps[0] ? "t2-grp" : "");
+      var th = el("th", "", r.name);
+      th.scope = "row";
+      tr.appendChild(th);
+      // "Includes zero" uses the wider interval when there are two.
+      var wide = r.boot && r.boot[1] - r.boot[0] > r.hi - r.lo ? r.boot : [r.lo, r.hi];
+      [r.step ? "–" : num(r.hands), fmt(r.wr), r.step ? "–" : num(r.sd), span(r.lo, r.hi)]
+        .concat(hasBoot ? [r.boot ? span(r.boot[0], r.boot[1]) : "–"] : [],
+                [wide[0] <= 0 && wide[1] >= 0 ? "Yes" : "No"])
+        .forEach(function (c) { tr.appendChild(el("td", "", c)); });
+      tb.appendChild(tr);
+    });
+    t.appendChild(tb);
+
+    document.getElementById("fig2").hidden = false;
+    document.getElementById("t2-box").hidden = false;
+  })();
+</script>
+</body>
+</html>
