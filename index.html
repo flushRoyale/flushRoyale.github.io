@@ -219,7 +219,7 @@
   .sec { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.6rem 2.5rem; margin-top: 4rem; }
   @media (min-width: 56rem) { .sec { grid-template-columns: 11rem minmax(0, 41rem); } }
   .sec > h2 { font-family: var(--sans); font-size: 0.95rem; font-weight: 600; margin: 0.3rem 0 0; line-height: 1.4; }
-  .entry + .entry { margin-top: 1.7rem; }
+  .entry + .entry, .entry + #projects > .entry:first-child { margin-top: 1.7rem; }
   .entry h3 { font-size: 1.125rem; font-weight: 600; line-height: 1.35; margin: 0; }
   .entry .meta { font-family: var(--sans); font-size: 0.875rem; color: var(--muted); margin: 0.15rem 0 0.4rem; }
   .note { font-family: var(--sans); font-size: 0.875rem; color: var(--muted); margin-top: 1.4rem; }
