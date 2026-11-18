@@ -543,7 +543,12 @@
   // One object per project, in the order you want them shown. Empty list shows nothing.
   // { title: "...", meta: "Course or context, year", summary: "one or two sentences",
   //   link: "https://github.com/flushRoyale/repo-name" or null }
-  var PROJECTS = [];
+  var PROJECTS = [
+    { title: "Signal or luck? What a poker win rate can and can't prove",
+      meta: "Personal project, Python and SQL, 2026",
+      summary: "A risk study of my 500,000+ hand online poker record: confidence intervals for the win rate, Monte Carlo drawdowns, and risk of ruin when the true edge is uncertain. It adds a SQL analysis of the 10,000 public hands played by the poker AI Pluribus, which lost 7.1 bb/100 in raw chips: a real edge hidden by noise.",
+      link: "https://github.com/flushRoyale/poker-variance-lab" }
+  ];
 
   // ---------- Poker results: Figure 2 and Table 2 ----------
   // null hides both. Otherwise numbers come straight from the tracker, in bb/100:
